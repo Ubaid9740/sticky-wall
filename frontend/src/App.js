@@ -4,35 +4,41 @@ import Note from "./components/Note";
 import CreateArea from "./components/CreateArea";
 import "./App.css";
 
+// UPDATE THIS URL to match the "Domain" shown in your Vercel Backend Dashboard
+const BASE_URL = "https://sticky-wall-liard.vercel.app/api/notes";
+
 function App() {
   const [notes, setNotes] = useState([]);
 
-  
+  // Fetch all notes
   useEffect(() => {
-    axios.get("https://sticky-wall-api.vercel.app/api/notes")
-      .then(res => setNotes(res.data))
-      .catch(err => console.log(err));
+    axios.get(BASE_URL)
+      .then(res => {
+        // Ensure res.data is an array before setting state
+        setNotes(Array.isArray(res.data) ? res.data : []);
+      })
+      .catch(err => console.error("Error fetching notes:", err));
   }, []);
 
-  
+  // Add a new note
   function addNote(newNote) {
-    axios.post("https://sticky-wall-api.vercel.app/api/notes", {
+    axios.post(BASE_URL, {
       text: newNote.content,
       color: newNote.color
     })
     .then(res => {
-      setNotes(prevNotes => [res.data, ...prevNotes]); // Add new note to screen
+      setNotes(prevNotes => [res.data, ...prevNotes]); 
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error("Error adding note:", err));
   }
 
-  
+  // Delete a note
   function deleteNote(id) {
-    axios.delete(`https://sticky-wall-api.vercel.app/api/notes/${id}`)
+    axios.delete(`${BASE_URL}/${id}`)
       .then(() => {
         setNotes(prevNotes => prevNotes.filter(note => note._id !== id));
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error("Error deleting note:", err));
   }
 
   return (
@@ -42,8 +48,8 @@ function App() {
       </div>
       <CreateArea onAdd={addNote} />
       <div className="note-container">
-        {notes.map((noteItem) => {
-          return (
+        {notes.length > 0 ? (
+          notes.map((noteItem) => (
             <Note
               key={noteItem._id}
               id={noteItem._id}
@@ -51,8 +57,12 @@ function App() {
               color={noteItem.color}
               onDelete={deleteNote}
             />
-          );
-        })}
+          ))
+        ) : (
+          <p style={{ textAlign: "center", width: "100%", marginTop: "20px" }}>
+            No notes found. Try adding one!
+          </p>
+        )}
       </div>
     </div>
   );

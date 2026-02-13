@@ -71,9 +71,6 @@ app.listen(PORT, () => {
 
 
 
-app.get("/", (req, res) => {
-    res.send("Sticky Wall API is running...");
-});
-
+app.get("/", (req, res) => res.send("Sticky Wall API is running..."));
 
 module.exports = app;
