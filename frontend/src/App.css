@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Roboto:wght@300;500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eee;
+  background-image: radial-gradient(#d1d1d1 10%, transparent 11%), radial-gradient(#d1d1d1 10%, transparent 11%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #333;
+  margin: auto -16px;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.header h1 {
+  color: #fff;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-weight: 200;
+}
+
+/* --- THE INPUT AREA --- */
+.create-area {
+  position: relative;
+  width: 480px;
+  margin: 30px auto 20px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 138, 138);
+}
+
+.create-area textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+
+.create-area button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+
+/* Color Picker Circles */
+.color-picker {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.color-picker span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+/* --- THE STICKY NOTES --- */
+.note-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows notes to flow to the next line */
+    padding: 20px;
+    justify-content: center;
+}
+
+.note {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2); /* The 3D lift */
+  padding: 15px;
+  width: 240px;
+  margin: 15px;
+  float: left;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+/* Slight rotation for realism */
+.note:nth-child(even) { transform: rotate(1deg); }
+.note:nth-child(odd) { transform: rotate(-1deg); }
+
+.note:hover {
+    transform: scale(1.05); /* Pop effect on hover */
+    z-index: 5;
+}
+
+.note p {
+  font-family: 'Gloria Hallelujah', cursive; /* Handwritten font */
+  font-size: 1.1em;
+  white-space: pre-wrap; /* Keeps line breaks */
+  word-wrap: break-word;
+}
+
+.note button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-weight: bold;
+}
