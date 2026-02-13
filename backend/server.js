@@ -4,14 +4,15 @@ const mongoose = require('mongoose');
 const cors = require('cors'); 
 const app = express();
 
-
+// --- THE NUCLEAR CORS FIX ---
 app.use(cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: "*", 
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
-})); 
+}));
 
 app.use(express.json());
+// -----------------------------
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('✅ Connected to MongoDB Successfully!'))
