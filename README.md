@@ -24,13 +24,3 @@ The project follows a decoupled client-server architecture:
 - The **Express Backend** acts as a middleware to handle business logic and database queries.
 - **CORS** is implemented to allow secure cross-origin communication between the two Vercel deployments.
 
-
-
-
-
-
-## 🔧 Installation & Local Setup
-
-1. **Clone the repository:**
-   ```bash
-   git clone [Your-GitHub-Repo-Link]
